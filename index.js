@@ -1,9 +1,21 @@
-let express = require('express');
+let wss = require("ws").Server;
 
-let app = express();
+let server = new wss({port: 591});
 
-app.get("/", (request, response) => {
-  response.send("Hello, Node.js!");
-});
+let clients = new Set();
 
-app.listen(591);
+server.on("connection", function(socket) {
+  clients.add(socket);
+
+  socket.on("message", (message) => {
+    for(let interlocutor of clients) {
+      interlocutor.send(message);
+    }
+  });
+
+  
+  socket.on("close", () => {
+    clients.delete(socket);
+  })
+
+})
