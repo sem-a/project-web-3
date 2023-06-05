@@ -1,29 +1,42 @@
-let ws = new WebSocket("ws://localhost:591/");
 
-tinyMCE.init({
-  selector: 'div',
-  plugins: ["fullscreen"],
-  setup: (editor) => {
-    editor.on("init", () => {
-      setTimeout( () => {
-        editor.execCommand("mceFullScreen");
-      }, 0)
-    });
-    ws.onmessage = (message) => {
-      document.activeElement.blur();
-      editor.setContent(message.data);
-    };
+let vm = new Vue( {
+  el: "#app",
+  data: {
+    // number: 0,
+    // changeCount: 0
 
-    function sendDocument() {
-      ws.send(editor.getContent());
-    }
+    // visible: true
 
-    editor.on("keyup", sendDocument);
-    editor.on("change", sendDocument);
+    x: ['', ''],
+
+    b: '',
+
+    c: ''
 
   },
-})
+  methods: {
+    // increase: function() {
+    //   this.number += 1
+    // },
+    // decrease: function() {
+    //   this.number -= 1
+    // }
+    reshenie: function() {
+      let b = this.b, c = this.c;
+      let disc = b*b - 4*c;
+      if(disc >= 0) {
+        let x1 = (-b - Math.sqrt(disc)) / 2
+        let x2 = (-b + Math.sqrt(disc)) / 2
+        this.x = [x1, x2];
+      } else {
+        this.x = ['Решений нет', 'Решений нет']
+      }
 
+    }
+  },
+});
 
-await 
-
+// vm.$watch("number", function(newValue){
+//   console.log(newValue);
+//   this.changeCount += 1;
+// })

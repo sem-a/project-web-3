@@ -5,33 +5,41 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    html, body {
-      height: 100%;
-    }
-    body {
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #field, #chat {
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    #chat {
-      height: 10em;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 
   <title>Редактор</title>
 </head>
 <body>
   
-  <div></div>
+  <div id="app">
 
-  <script src="https://cdn.tinymce.com/4.7/tinymce.min.js"></script>
+    <!-- <button type="button" v-on:click="decrease">-</button>
+    {{number}}
+    <button type="button" v-on:click="increase">+</button>
+
+    <p>Количество изменений числа: {{ changeCount }}</p> -->
+
+
+    <!-- <input type="checkbox" v-model="visible">
+    <h1 v-if="visible">Смотрите на меня!</h1> -->
+
+
+    <!-- <input type="checkbox" v-model="visible">
+    <transition name="fade">
+      <h1 v-if="visible">Смотрите на меня!</h1>
+    </transition> -->
+
+    <p>x^2 + <input type="number" v-model="b">x + <input type="number" v-model="c"> = 0</p>
+
+    <button type="button" v-on:click="reshenie()">Решить</button>
+
+    <p>х1: {{x[0]}}, x2: {{ x[1] }}</p>
+
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+
   <script src="script.js"></script>
 
 </body>
